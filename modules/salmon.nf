@@ -10,8 +10,6 @@ process GENERATE_DECOY_TRANSCIPTROME {
     path("decoy.txt"), emit:decoy
     path("gentrome.fa"), emit:gentrome
     
-    promise([FOR_ALL("f", ITER("*.fa"), { f -> IF_THEN(COND("grep -Ev '^[>ACTGUN;]' $f"), "exit 1") }), RETURN(NOT(EMPTY_FILE("decoys.txt"))), RETURN(NOT(EMPTY_FILE("gentrome.fa"))), COMMAND_LOGGED_NO_ERROR(), INPUTS_NOT_CHANGED()])
-    
     //https://combine-lab.github.io/alevin-tutorial/2019/selective-alignment/
     //grep "^>" <(gunzip -c GRCm38.primary_assembly.genome.fa.gz) | cut -d " " -f 1 > decoys.txt
     //    cat gencode.vM23.transcripts.fa.gz GRCm38.primary_assembly.genome.fa.gz > gentrome.fa.gz
