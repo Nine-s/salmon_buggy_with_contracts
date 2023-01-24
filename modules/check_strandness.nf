@@ -26,7 +26,6 @@ process CHECK_STRANDNESS {
 		fi;
 	done"""
 ])
-	promise 'if [ "STRANDNESS" = "error" ]; then exit 1; fi'
 
 	shell:
 	'''
