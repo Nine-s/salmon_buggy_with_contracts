@@ -19,12 +19,7 @@ process CHECK_STRANDNESS {
 				"exit 1"
 			)
 		}
-	), 
-	"""for file in *.fastq; do 
-		if ! awk 'BEGIN{c=0;} {if (c % 4 == 0 && substr(\$0,1,1) != "@" || substr(\$0,1,1) == "@ ") {exit 1} if (c % 4 == 1) {len = length(\$0)} if (c % 4 == 2 && substr(\$0,1,1) != "+") {exit 1} if (c % 4 == 3 && len != length(\$0)) {exit 1} c = c+1}' \$file; then 
-			exit 1; 
-		fi;
-	done"""
+	) 
 ])
 	promise 'if [ "\$STRANDNESS" = "error" ]; then exit 1; fi'
 
